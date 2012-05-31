@@ -5,16 +5,12 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 (function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
 
 var APP = (function($) {
-    var app = {}, $el;
-    // Public functions
-    // app.foo = function() {  };
-    // Private functions
+    var app = {},
+        $el;
     function init() {
         $('a[href=#]')
                 .attr('href','javascript:;');
-        // Open links starting with "http(s)://" in a new window unless they're targeted at this host.
         $("a[href^=http]").click(open);
-        // Set up the global ajax
         $.ajaxSetup({ cache: false, error: function errorLog(x, e) { log(x, e); }, type: 'POST' });
         if (!Modernizr.input.placeholder) { placeholder(); }
     }
@@ -41,7 +37,6 @@ var APP = (function($) {
             $el.blur();
         });
     }
-    // Call the init function on load
     $(init);
     return app;
 } (jQuery));
